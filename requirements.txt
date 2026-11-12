@@ -1,0 +1,9 @@
+# 核心依赖（必须）
+Pillow>=9.0
+requests>=2.25
+
+# 可选：更快的 PDF 渲染（不装则回退到 poppler 的 pdftoppm）
+# PyMuPDF>=1.23
+
+# 可选：没有 pandoc 时的 Word 导出兜底
+# python-docx>=1.0
