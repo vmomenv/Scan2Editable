@@ -6,6 +6,11 @@ pages/
 debug/
 .cache/
 
+# ---- 前端 ----
+web/node_modules/
+web/dist/
+*.tsbuildinfo
+
 # ---- 日志 ----
 *.log
 
