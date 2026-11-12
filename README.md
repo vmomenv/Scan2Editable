@@ -108,6 +108,30 @@ python3 pdf2md_ai.py scan.pdf -o output --docx
 python3 pdf2md_ai.py scan.pdf -o output --refine 0 --no-trim --no-verify
 ```
 
+### 3.1 Web 可视化操作台
+
+仓库自带一个本地 Web 界面：左侧逐页预览 PDF（滚轮向下把当前页向左丢出、向上翻回），
+右侧配置导出参数，点一下就能跑完并下载 `.docx`。
+
+```bash
+# 首次构建前端（需要 Node 18+）
+cd web && npm install && npm run build && cd ..
+
+# 启动：http://127.0.0.1:8765
+python3 server/app.py
+```
+
+开发前端时开两个终端，Vite 会把 `/api` 代理到 8765：
+
+```bash
+python3 server/app.py                 # 终端 1
+cd web && npm run dev                 # 终端 2 → http://127.0.0.1:5173
+```
+
+界面里的配置会原样映射成 `pdf2md_ai.py` 的命令行参数（DPI、页码范围、精修轮次、
+校验/去白边、调试框图、并发数等）；API Key 通过环境变量传给子进程，不会出现在命令行里。
+上传的 PDF 与输出都写在 `output/web/` 下，任务日志和进度实时回显在右侧面板。
+
 ---
 
 ## 4. 模型 / 供应商
